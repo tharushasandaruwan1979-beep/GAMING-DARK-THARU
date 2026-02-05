@@ -1,93 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaming Dark Tharu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:'Orbitron',sans-serif;
-      background:#0b0b0f;
-      color:#ffffff;
-    }
-    header{
-      background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),url('banner.jpg') center/cover no-repeat;
-      padding:120px 20px;
-      text-align:center;
-    }
-    header h1{
-      font-size:3rem;
-      color:#ff2e2e;
-      letter-spacing:3px;
-    }
-    header p{
-      margin-top:15px;
-      color:#cccccc;
-    }
-    .btns a{
-      display:inline-block;
-      margin:20px 10px;
-      padding:12px 25px;
-      border:2px solid #ff2e2e;
-      color:#fff;
-      text-decoration:none;
-      transition:.3s;
-    }
-    .btns a:hover{background:#ff2e2e}
-    section{padding:80px 20px;max-width:1100px;margin:auto}
-    h2{color:#ff2e2e;margin-bottom:20px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
-    .card{
-      background:#14141c;
-      padding:25px;
-      border:1px solid #222;
-    }
-    footer{
-      background:#050508;
-      text-align:center;
-      padding:30px;
-      color:#777;
-      font-size:14px;
-    }
-  </style>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaming Dark Tharu</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-<header>
-  <h1>GAMING DARK THARU</h1>
-  <p>Livestream | Vlog | Gaming Tips</p>
-  <div class="btns">
-    <a href="https://www.youtube.com/@GAMINGDARKTHARU" target="_blank">YouTube Channel</a>
-    <a href="https://www.tiktok.com/@darktharu_shark" target="_blank">TikTok Profile</a>
-  </div>
-</header>
+<style>
+/* ================= BASE ================= */
+body{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  background:#0b0b0f;
+  color:#fff;
+  overflow-x:hidden;
+}
 
-<section>
-  <h2>About Brand</h2>
-  <p>Gaming Dark Tharu is a Sri Lankan gaming content brand focused on livestreams, gameplays, vlogs and creator tips. Built with passion, consistency and a dark gaming aesthetic.</p>
-</section>
+/* GLOBAL GLOW */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 20% 30%, #ff2e2e33, transparent 45%),
+    radial-gradient(circle at 80% 70%, #ff6a0033, transparent 45%);
+  animation:glowMove 8s ease-in-out infinite alternate;
+}
+@keyframes glowMove{
+  from{filter:blur(0)}
+  to{filter:blur(10px)}
+}
 
-<section>
-  <h2>Services</h2>
-  <div class="cards">
-    <div class="card">🎮 Gaming Livestreams</div>
-    <div class="card">📹 YouTube Gaming Content</div>
-    <div class="card">🔥 TikTok Short Gaming Clips</div>
-    <div class="card">💡 Gaming Tips & Tricks</div>
-  </div>
-</section>
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
 
-<section>
-  <h2>Contact</h2>
-  <p>For collaborations & promotions</p>
-  <p>Email: <strong>darktharu@gmail.com</strong></p>
-</section>
+/* BG SWAP */
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  animation:fadeBG 14s infinite;
+}
+.hero::before{
+  background-image:url("banner.jpg");
+}
+.hero::after{
+  background-image:url("graphic-bg.jpg");
+  opacity:0;
+  animation-delay:7s;
+}
+@keyframes fadeBG{
+  0%,45%{opacity:1}
+  55%,100%{opacity:0}
+}
 
-<footer>
-  © 2026 Gaming Dark Tharu | Dark Gaming Business Website
-</footer>
+/* NEON FRAME */
+.hero::after{
+  box-shadow:
+    inset 0 0 160px #ff2e2e55,
+    0 0 140px #ff2e2e44;
+}
 
-</body>
-</html>
+/* ================= NEON BAR ================= */
+@keyframes neonPulse{
+  0%{box-shadow:0 0 8px #ff2e2e}
+  50%{box-shadow:0 0 22px #ff2e2e}
+  100%{box-shadow:0 0 8px #ff2e2e}
+}
+
+.overlay-bar{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.6);
+  border:2px solid #ff2e2e;
+  border-radius:16px;
+  padding:10px 12px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  animation:neonPulse 2.5s infinite;
+  z-index:999;
+}
+.overlay-bar img.logo{width:28px;border-radius:50%}
+.overlay-bar a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#fff;
+  text-decoration:none;
+  border:2px solid #ff2e2e;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:13px;
+  transition:.3s;
+}
+.overlay-bar a img{width:16px;height:16px}
+.overlay-bar a:hover{
+  background:#ff2e2e;
+  box-shadow:0 0 20px #ff2e2e;
+  transform:scale(1.08);
+}
+
+/* ================= SCROLL BAR ================= */
+.scroll-bar{
+  position:fixed;
+  top:-120px;
+  left:0;
+  width:100%;
+  background:rgba(0,0,0,.85);
+  border-bottom:2px solid #ff2e2e;
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.4s ease;
+  z-index:1000;
+}
+.scroll-bar.show{top:
